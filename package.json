@@ -1,0 +1,52 @@
+{
+  "name": "sidekick",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sidekick, a local-first desktop AI meeting assistant.",
+  "main": "dist-electron/main.js",
+  "homepage": ".",
+  "scripts": {
+    "dev": "concurrently -k \"vite --host 127.0.0.1\" \"tsc -p tsconfig.electron.json -w --preserveWatchOutput\" \"wait-on tcp:5173 dist-electron/main.js && electron .\"",
+    "build": "tsc -p tsconfig.electron.json && vite build",
+    "start": "electron .",
+    "preview": "vite preview --host 127.0.0.1",
+    "dist": "npm run build && electron-builder --mac --publish never"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.10.0",
+    "electron-store": "^11.0.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^5.0.2",
+    "concurrently": "^9.2.1",
+    "electron": "^37.2.6",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.2",
+    "wait-on": "^9.0.1"
+  },
+  "build": {
+    "appId": "com.sidekick.app",
+    "productName": "Sidekick",
+    "files": [
+      "dist-electron/**/*",
+      "dist-renderer/**/*",
+      "package.json"
+    ],
+    "extraMetadata": {
+      "main": "dist-electron/main.js"
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": ["dmg", "zip"]
+    },
+    "directories": {
+      "output": "release"
+    }
+  }
+}
