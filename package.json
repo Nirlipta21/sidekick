@@ -10,7 +10,8 @@
     "build": "tsc -p tsconfig.electron.json && vite build",
     "start": "electron .",
     "preview": "vite preview --host 127.0.0.1",
-    "dist": "npm run build && electron-builder --mac --publish never"
+    "dist": "npm run build && electron-builder --publish never",
+    "release": "npm run build && electron-builder --publish always"
   },
   "dependencies": {
     "better-sqlite3": "^11.10.0",
@@ -33,18 +34,41 @@
   "build": {
     "appId": "com.sidekick.app",
     "productName": "Sidekick",
+    "artifactName": "${productName}-${version}-${arch}.${ext}",
+    "icon": "build/icon",
     "files": [
       "dist-electron/**/*",
       "dist-renderer/**/*",
       "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "build",
+        "to": "build"
+      }
     ],
     "extraMetadata": {
       "main": "dist-electron/main.js"
     },
     "mac": {
       "category": "public.app-category.productivity",
-      "target": ["dmg", "zip"]
+      "target": ["dmg", "zip"],
+      "hardenedRuntime": false
     },
+    "linux": {
+      "target": ["AppImage", "deb"]
+    },
+    "win": {
+      "target": ["nsis", "zip"]
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Nirlipta21",
+        "repo": "sidekick",
+        "releaseType": "draft"
+      }
+    ],
     "directories": {
       "output": "release"
     }
