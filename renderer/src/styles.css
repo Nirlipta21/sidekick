@@ -11,6 +11,23 @@ html, body, #root {
   background: radial-gradient(circle at top, #fbf8f4, #f1ebe1 70%);
 }
 
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+}
+
+.sidebar {
+  padding: 36px 28px;
+  border-right: 1px solid rgba(70, 60, 50, 0.12);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(8px);
+}
+
+.content {
+  padding: 28px;
+}
+
 .main-shell, .companion-shell {
   min-height: 100vh;
   padding: 40px;
@@ -38,4 +55,88 @@ h1, h2, p {
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.62);
   box-shadow: 0 12px 36px rgba(60, 48, 36, 0.08);
+}
+
+.compact-panel {
+  margin-top: 18px;
+}
+
+.subtle, .muted {
+  color: rgba(45, 41, 38, 0.68);
+}
+
+.stack {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0;
+}
+
+input, textarea, button {
+  font: inherit;
+}
+
+input, textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(70, 60, 50, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 12px 14px;
+  color: inherit;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+button {
+  border: 1px solid rgba(70, 60, 50, 0.16);
+  border-radius: 14px;
+  background: #2f2a26;
+  color: #f7f3ed;
+  padding: 12px 14px;
+  cursor: pointer;
+}
+
+button.danger {
+  background: #6d4f43;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.meeting-list {
+  display: grid;
+  gap: 10px;
+  max-height: 48vh;
+  overflow: auto;
+}
+
+.meeting-item {
+  display: grid;
+  gap: 4px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.55);
+  color: #2d2926;
+}
+
+.meeting-item.active {
+  border-color: rgba(47, 42, 38, 0.4);
+  background: #fff;
+}
+
+.panel-header, .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
 }
